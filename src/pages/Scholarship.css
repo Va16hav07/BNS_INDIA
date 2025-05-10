@@ -1,0 +1,359 @@
+.scholarship-page {
+  min-height: 100vh;
+  background: var(--bg-light);
+  padding: 4rem 0;
+}
+
+.scholarship-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Header */
+.scholarship-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Section */
+.scholarship-section {
+  margin-bottom: 3rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.section-text {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Lists */
+.feature-list,
+.benefit-list,
+.eligibility-list,
+.process-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.feature-list li,
+.benefit-list li,
+.eligibility-list li,
+.process-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.feature-list li::before,
+.benefit-list li::before,
+.eligibility-list li::before,
+.process-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+/* Benefits */
+.benefits-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.benefit-group {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-group-title {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.benefit-title {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Table */
+.table-container {
+  overflow-x: auto;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.membership-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.membership-table th,
+.membership-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.membership-table th {
+  background: var(--primary-color-light);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.membership-table tr:last-child td {
+  border-bottom: none;
+}
+
+.table-note {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  padding: 0.5rem 1rem;
+  text-align: right;
+}
+
+/* Eligibility */
+.eligibility-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.eligibility-group {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.eligibility-title {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Process */
+.process-list {
+  counter-reset: step;
+}
+
+.process-list li {
+  counter-increment: step;
+  padding-left: 2.5rem;
+}
+
+.process-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.step-title {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Deadline Banner */
+.deadline-banner {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-color-dark));
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 3rem 0;
+  color: white;
+}
+
+.deadline-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.deadline-label {
+  font-weight: 600;
+}
+
+.apply-link {
+  color: white;
+  text-decoration: underline;
+  transition: opacity 0.3s ease;
+}
+
+.apply-link:hover {
+  opacity: 0.8;
+}
+
+/* Quote Section */
+.quote-section {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.quote-text {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  font-style: italic;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.bonus-text {
+  font-size: 1.1rem;
+  color: var(--success-color);
+  font-weight: 600;
+}
+
+/* Highlight */
+.highlight {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Dark Mode */
+.dark-mode .scholarship-page {
+  background: var(--bg-dark);
+}
+
+.dark-mode .benefit-group,
+.dark-mode .eligibility-group,
+.dark-mode .table-container {
+  background: var(--bg-dark-secondary);
+}
+
+.dark-mode .page-title,
+.dark-mode .section-title,
+.dark-mode .benefit-group-title,
+.dark-mode .eligibility-title,
+.dark-mode .step-title,
+.dark-mode .highlight {
+  color: var(--primary-color-light);
+}
+
+.dark-mode .page-subtitle,
+.dark-mode .section-text,
+.dark-mode .feature-list li,
+.dark-mode .benefit-list li,
+.dark-mode .eligibility-list li,
+.dark-mode .process-list li {
+  color: var(--text-dark);
+}
+
+.dark-mode .membership-table th {
+  background: var(--bg-dark);
+}
+
+.dark-mode .membership-table th,
+.dark-mode .membership-table td {
+  border-color: var(--border-color-dark);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .scholarship-page {
+    padding: 2rem 0;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .benefits-container,
+  .eligibility-container {
+    grid-template-columns: 1fr;
+  }
+
+  .deadline-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .quote-text {
+    font-size: 1.25rem;
+  }
+
+  .bonus-text {
+    font-size: 1rem;
+  }
+} 

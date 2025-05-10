@@ -1,0 +1,265 @@
+.header {
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo img {
+  height: 48px;
+  width: auto;
+}
+
+.logo span {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #1a202c;
+  letter-spacing: 1px;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #4a5568;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.main-nav a:hover {
+  color: #00254d;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #2b6cb0;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2c5282;
+}
+
+.btn-secondary {
+  background: white;
+  color: #2b6cb0;
+  border: 1px solid #2b6cb0;
+}
+
+.btn-secondary:hover {
+  background: #174d6a;
+}
+
+/* Profile Menu Styles */
+.profile-menu {
+  position: relative;
+}
+
+.profile-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  color: #4a5568;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.profile-button:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+}
+
+.profile-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  z-index: 50;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #4a5568;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.dropdown-item:hover {
+  background: #f7fafc;
+  color: #4f46e5;
+}
+
+.dropdown-item svg {
+  width: 1rem;
+  height: 1rem;
+  color: #718096;
+  transition: color 0.3s ease;
+}
+
+.dropdown-item:hover svg {
+  color: #4f46e5;
+}
+
+/* Special styling for subscription item */
+.dropdown-item svg.fa-crown {
+  color: #f59e0b;
+}
+
+.dropdown-item:hover svg.fa-crown {
+  color: #d97706;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .header {
+    background: #1a202c;
+  }
+
+  .logo span {
+    color: #f8fafc;
+  }
+
+  .main-nav a {
+    color: #a0aec0;
+  }
+
+  .main-nav a:hover {
+    color: #63b3ed;
+  }
+
+  .btn-secondary {
+    background: #1a202c;
+    color: #63b3ed;
+    border-color: #63b3ed;
+  }
+
+  .btn-secondary:hover {
+    background: #2d3748;
+  }
+
+  .profile-button {
+    background: #1a202c;
+    border-color: #4a5568;
+    color: #a0aec0;
+  }
+
+  .profile-button:hover {
+    background: #2d3748;
+    border-color: #718096;
+  }
+
+  .profile-dropdown {
+    background: #1a202c;
+    border-color: #4a5568;
+  }
+
+  .dropdown-item {
+    color: #a0aec0;
+  }
+
+  .dropdown-item:hover {
+    background: #2d3748;
+    color: #818cf8;
+  }
+
+  .dropdown-item svg {
+    color: #718096;
+  }
+
+  .dropdown-item:hover svg {
+    color: #818cf8;
+  }
+
+  /* Special styling for subscription item in dark mode */
+  .dropdown-item svg.fa-crown {
+    color: #fbbf24;
+  }
+
+  .dropdown-item:hover svg.fa-crown {
+    color: #f59e0b;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+}

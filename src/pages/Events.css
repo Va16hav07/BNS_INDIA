@@ -1,0 +1,288 @@
+/* Events Page */
+.events-page {
+  min-height: 100vh;
+  background: var(--bg-light);
+  padding: 2rem 0;
+}
+
+.events-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Events Header */
+.events-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.events-title {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.events-description {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Events Grid */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* Event Card */
+.event-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.event-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--primary-color-light);
+}
+
+.event-title {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.event-stage,
+.event-audience {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background: var(--primary-color-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  margin-right: 0.5rem;
+}
+
+/* Event Details */
+.event-details {
+  margin-bottom: 1.5rem;
+}
+
+.event-detail {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+.detail-label {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.event-detail.impact {
+  color: var(--success-color);
+}
+
+.event-detail.prize {
+  color: var(--warning-color);
+}
+
+.event-detail.certification {
+  color: var(--info-color);
+}
+
+/* Event Content */
+.event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.event-section {
+  background: var(--bg-light);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.event-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.event-list-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.list-icon {
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Differentiators Section */
+.differentiators-section {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-top: 4rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.differentiators-title {
+  font-size: 1.75rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.differentiators-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.differentiator-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-light);
+}
+
+.differentiator-icon {
+  margin-right: 1rem;
+  font-size: 1.5rem;
+}
+
+.example-box {
+  background: var(--bg-light);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* Dark Mode */
+.dark-mode .events-page {
+  background: var(--bg-dark);
+}
+
+.dark-mode .event-card,
+.dark-mode .differentiators-section {
+  background: var(--bg-dark-secondary);
+}
+
+.dark-mode .event-section {
+  background: var(--bg-dark);
+}
+
+.dark-mode .events-title,
+.dark-mode .event-title,
+.dark-mode .section-title,
+.dark-mode .differentiators-title {
+  color: var(--primary-color-light);
+}
+
+.dark-mode .events-description,
+.dark-mode .event-detail,
+.dark-mode .event-list-item,
+.dark-mode .differentiator-item,
+.dark-mode .example-box {
+  color: var(--text-dark);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .events-page {
+    padding: 1rem 0;
+  }
+
+  .events-title {
+    font-size: 2rem;
+  }
+
+  .events-description {
+    font-size: 1rem;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card {
+    padding: 1.25rem;
+  }
+
+  .event-title {
+    font-size: 1.25rem;
+  }
+
+  .differentiators-section {
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .differentiators-title {
+    font-size: 1.5rem;
+  }
+
+  .differentiator-item {
+    font-size: 1rem;
+  }
+} 

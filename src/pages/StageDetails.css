@@ -1,0 +1,516 @@
+.stage-details-page {
+  min-height: 100vh;
+  background: var(--background-light);
+}
+
+.page-header {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/stage-details-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.page-header p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.stage-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.stage-info {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.stage-info h2 {
+  font-size: 2rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.stage-info p {
+  color: var(--text-light);
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.stage-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.meta-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.meta-icon i {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.meta-content h3 {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  margin-bottom: 0.25rem;
+}
+
+.meta-content p {
+  color: var(--text-light);
+  opacity: 0.8;
+  margin: 0;
+}
+
+.stage-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.section-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-5px);
+}
+
+.section-card h3 {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.section-card p {
+  color: var(--text-light);
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+.section-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.section-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-light);
+  margin-bottom: 0.75rem;
+}
+
+.section-list li i {
+  color: var(--primary-color);
+}
+
+.section-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.section-button:hover {
+  background: var(--primary-dark);
+}
+
+/* Dark mode */
+.dark-mode .stage-details-page {
+  background: var(--background-dark);
+}
+
+.dark-mode .stage-info,
+.dark-mode .section-card {
+  background: var(--background-dark);
+}
+
+.dark-mode .stage-info h2,
+.dark-mode .stage-info p,
+.dark-mode .meta-content h3,
+.dark-mode .meta-content p,
+.dark-mode .section-card h3,
+.dark-mode .section-card p,
+.dark-mode .section-list li {
+  color: var(--text-dark);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 3rem 0;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .page-header p {
+    font-size: 1rem;
+  }
+
+  .stage-content {
+    padding: 2rem 1rem;
+  }
+
+  .stage-info h2 {
+    font-size: 1.75rem;
+  }
+
+  .meta-content h3 {
+    font-size: 1.125rem;
+  }
+
+  .section-card h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Stage Details Container */
+.stage-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--bg-light);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Stage Header */
+.stage-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.stage-title {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.stage-goal {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* Stage Content */
+.stage-content {
+  display: grid;
+  gap: 2rem;
+}
+
+/* Section Styles */
+.stage-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.stage-section:hover {
+  transform: translateY(-2px);
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+/* List Styles */
+.skills-list,
+.implementation-list,
+.validation-list,
+.industry-list,
+.funding-list,
+.activities-list,
+.community-list,
+.competitions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-item,
+.implementation-item,
+.validation-item,
+.industry-item,
+.funding-item,
+.activity-item,
+.community-item,
+.competition-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  background: var(--bg-light);
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.skill-item:hover,
+.implementation-item:hover,
+.validation-item:hover,
+.industry-item:hover,
+.funding-item:hover,
+.activity-item:hover,
+.community-item:hover,
+.competition-item:hover {
+  background: var(--primary-color-light);
+}
+
+/* Icons */
+.skill-icon,
+.item-icon,
+.validation-icon,
+.industry-icon,
+.funding-icon,
+.activity-icon,
+.community-icon,
+.competition-icon {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+/* Resources Grid */
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.resource-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: var(--bg-light);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+.resource-card:hover {
+  background: var(--primary-color-light);
+  transform: translateY(-2px);
+}
+
+.resource-icon {
+  margin-right: 0.8rem;
+  font-size: 1.2rem;
+}
+
+/* Implementation Groups */
+.implementation-group {
+  margin-bottom: 2rem;
+}
+
+.group-title {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Navigation */
+.stage-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--primary-color);
+}
+
+.stage-nav-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-button {
+  padding: 0.8rem 1.5rem;
+  background: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-button:hover {
+  background: var(--primary-color-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Not Found State */
+.stage-not-found {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--bg-light);
+  border-radius: 1rem;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.stage-not-found h2 {
+  color: var(--error-color);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  background: var(--primary-color-dark);
+  transform: translateY(-2px);
+}
+
+/* Dark Mode */
+.dark-mode .stage-details-container {
+  background: var(--bg-dark);
+}
+
+.dark-mode .stage-section {
+  background: var(--bg-dark-secondary);
+}
+
+.dark-mode .skill-item,
+.dark-mode .implementation-item,
+.dark-mode .validation-item,
+.dark-mode .industry-item,
+.dark-mode .funding-item,
+.dark-mode .activity-item,
+.dark-mode .community-item,
+.dark-mode .competition-item,
+.dark-mode .resource-card {
+  background: var(--bg-dark);
+}
+
+.dark-mode .stage-title,
+.dark-mode .section-title {
+  color: var(--primary-color-light);
+}
+
+.dark-mode .stage-goal,
+.dark-mode .group-title {
+  color: var(--text-dark);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .stage-details-container {
+    padding: 1rem;
+  }
+
+  .stage-title {
+    font-size: 2rem;
+  }
+
+  .stage-section {
+    padding: 1.5rem;
+  }
+
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stage-navigation {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stage-nav-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .nav-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stage-section {
+  animation: fadeIn 0.5s ease-out;
+} 
