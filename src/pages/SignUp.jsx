@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './Auth.css';
 
 const SignUp = () => {
@@ -26,6 +27,7 @@ const SignUp = () => {
     confirmPassword: ''
   });
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const schoolTypes = [
     'Primary School',
@@ -86,11 +88,20 @@ const SignUp = () => {
     }
 
     try {
-      // TODO: Implement actual signup logic here
-      // For now, just simulate a successful signup
-      navigate('/login');
+      setIsLoading(true);
+      
+      // API call to register user
+      const response = await axios.post('http://localhost:5000/api/users/register', formData);
+      
+      if (response.data) {
+        // Show success message
+        alert('Registration successful! Please login with your credentials.');
+        navigate('/login');
+      }
     } catch (err) {
-      setError('Signup failed. Please try again.');
+      setError(err.response?.data?.message || 'Registration failed. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -376,8 +387,12 @@ const SignUp = () => {
 
           {error && <div className="error-message">{error}</div>}
 
-          <button type="submit" className="auth-button">
-            Register School
+          <button 
+            type="submit" 
+            className="auth-button"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Registering...' : 'Register School'}
           </button>
         </form>
 
@@ -389,4 +404,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp; 
+export default SignUp;

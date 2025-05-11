@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './Auth.css';
 
 const Login = () => {
@@ -10,6 +11,7 @@ const Login = () => {
     rememberMe: false
   });
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -29,12 +31,31 @@ const Login = () => {
     }
 
     try {
-      // TODO: Implement actual login logic here
-      // For now, just simulate a successful login
-      localStorage.setItem('isAuthenticated', 'true');
-      navigate('/subscription');
+      setIsLoading(true);
+      
+      // API call to login
+      const response = await axios.post('http://localhost:5000/api/users/login', {
+        email: formData.email,
+        password: formData.password
+      });
+      
+      if (response.data) {
+        // Store token and user info
+        localStorage.setItem('userInfo', JSON.stringify(response.data));
+        localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem('isEnrolled', response.data.isEnrolled.toString());
+        
+        // Redirect based on enrollment status
+        if (response.data.isEnrolled) {
+          navigate('/dashboard');
+        } else {
+          navigate('/subscription');
+        }
+      }
     } catch (err) {
-      setError('Invalid email or password');
+      setError(err.response?.data?.message || 'Invalid email or password');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -56,6 +77,7 @@ const Login = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Enter your email"
+              disabled={isLoading}
             />
           </div>
 
@@ -68,13 +90,18 @@ const Login = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Enter your password"
+              disabled={isLoading}
             />
           </div>
 
           {error && <div className="error-message">{error}</div>}
 
-          <button type="submit" className="auth-button">
-            Sign In
+          <button 
+            type="submit" 
+            className="auth-button"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
 
@@ -88,4 +115,4 @@ const Login = () => {
   );
 };
 
-export default Login; 
+export default Login;

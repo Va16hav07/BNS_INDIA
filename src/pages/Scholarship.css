@@ -10,6 +10,21 @@
   padding: 0 1rem;
 }
 
+/* CSS Variables (add at the top of the file) */
+:root {
+  --primary-color: #0066cc;
+  --primary-color-light: #e6f0ff;
+  --primary-color-dark: #004c99;
+  --bg-light: #f8f9fa;
+  --bg-dark: #1a1a1a;
+  --bg-dark-secondary: #2d2d2d;
+  --text-light: #333333;
+  --text-dark: #e0e0e0;
+  --border-color: #e0e0e0;
+  --border-color-dark: #444444;
+  --success-color: #28a745;
+}
+
 /* Header */
 .scholarship-header {
   text-align: center;
@@ -91,20 +106,40 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .benefit-group {
   background: white;
   border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.75rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-group:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
 }
 
 .benefit-group-title {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   color: var(--primary-color);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   font-weight: 600;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.benefit-group-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
 }
 
 .benefit-title {
@@ -117,31 +152,47 @@
   overflow-x: auto;
   background: white;
   border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
 }
 
 .membership-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   min-width: 600px;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .membership-table th,
 .membership-table td {
-  padding: 1rem;
+  padding: 1.2rem 1rem;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
 }
 
 .membership-table th {
-  background: var(--primary-color-light);
-  color: var(--primary-color);
+  background: var(--primary-color);
+  color: white;
   font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.membership-table tr:hover {
+  background-color: var(--primary-color-light);
 }
 
 .membership-table tr:last-child td {
   border-bottom: none;
+}
+
+.membership-table td:first-child {
+  font-weight: 600;
+  color: var(--primary-color);
 }
 
 .table-note {
@@ -149,6 +200,7 @@
   color: var(--text-light);
   padding: 0.5rem 1rem;
   text-align: right;
+  font-style: italic;
 }
 
 /* Eligibility */
@@ -290,7 +342,12 @@
 }
 
 .dark-mode .membership-table th {
-  background: var(--bg-dark);
+  background: var(--primary-color-dark);
+  color: white;
+}
+
+.dark-mode .membership-table tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .dark-mode .membership-table th,
@@ -356,4 +413,17 @@
   .bonus-text {
     font-size: 1rem;
   }
-} 
+
+  .table-container {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border-radius: 0;
+    width: calc(100% + 2rem);
+  }
+
+  .membership-table th,
+  .membership-table td {
+    padding: 0.8rem 0.6rem;
+    font-size: 0.9rem;
+  }
+}

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaCalendarAlt, FaClock, FaUser, FaUsers, FaMapMarkerAlt, FaSave } from 'react-icons/fa';
+import { FaCalendarAlt, FaClock, FaUser, FaUsers, FaMapMarkerAlt, FaSave, FaArrowLeft } from 'react-icons/fa';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import './Auth.css';
 
 const ScheduleMeeting = () => {
@@ -15,6 +17,13 @@ const ScheduleMeeting = () => {
     location: '',
     description: ''
   });
+
+  // State to handle the date picker
+  const [selectedDate, setSelectedDate] = useState(null);
+  
+  // Refs for date and time pickers
+  const datePickerRef = useRef(null);
+  const timeInputRef = useRef(null);
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,6 +41,37 @@ const ScheduleMeeting = () => {
         [name]: ''
       }));
     }
+  };
+
+  // Handle date change from DatePicker
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    if (date) {
+      const formattedDate = date.toISOString().split('T')[0];
+      setFormData(prev => ({
+        ...prev,
+        date: formattedDate
+      }));
+
+      if (errors.date) {
+        setErrors(prev => ({
+          ...prev,
+          date: ''
+        }));
+      }
+    }
+  };
+
+  // Open calendar on icon click
+  const handleCalendarIconClick = (e) => {
+    e.preventDefault();
+    datePickerRef.current.setOpen(true);
+  };
+
+  // Open time picker on icon click
+  const handleTimeIconClick = (e) => {
+    e.preventDefault();
+    timeInputRef.current.showPicker();
   };
 
   const validateForm = () => {
@@ -93,6 +133,13 @@ const ScheduleMeeting = () => {
 
   return (
     <div className="auth-container">
+      <button 
+        className="back-button" 
+        onClick={() => navigate('/dashboard')}
+        title="Back to Dashboard"
+      >
+        <FaArrowLeft />
+      </button>
       <div className="auth-box" style={{ maxWidth: '800px' }}>
         <div className="auth-header">
           <FaCalendarAlt className="auth-icon" style={{ fontSize: '2rem', color: '#3b82f6' }} />
@@ -101,7 +148,7 @@ const ScheduleMeeting = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+          <div className="form-grid">
             <div className="form-group">
               <label htmlFor="title">Meeting Title</label>
               <input
@@ -135,30 +182,31 @@ const ScheduleMeeting = () => {
 
             <div className="form-group">
               <label htmlFor="date">Date</label>
-              <div style={{ position: 'relative' }}>
-                <input
-                  type="date"
+              <div className="date-picker-container">
+                <DatePicker
                   id="date"
-                  name="date"
-                  value={formData.date}
-                  onChange={handleChange}
+                  selected={selectedDate}
+                  onChange={handleDateChange}
+                  minDate={new Date()}
+                  placeholderText="Select date"
+                  dateFormat="MM/dd/yyyy"
                   className={errors.date ? 'error' : ''}
-                  min={new Date().toISOString().split('T')[0]}
+                  ref={datePickerRef}
                 />
-                <FaCalendarAlt style={{
-                  position: 'absolute',
-                  right: '1rem',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  color: '#6b7280'
-                }} />
+                <button 
+                  type="button" 
+                  onClick={handleCalendarIconClick} 
+                  className="icon-button"
+                >
+                  <FaCalendarAlt className="input-icon" />
+                </button>
               </div>
               {errors.date && <span className="error-message">{errors.date}</span>}
             </div>
 
             <div className="form-group">
               <label htmlFor="time">Time</label>
-              <div style={{ position: 'relative' }}>
+              <div className="time-picker-container">
                 <input
                   type="time"
                   id="time"
@@ -166,14 +214,15 @@ const ScheduleMeeting = () => {
                   value={formData.time}
                   onChange={handleChange}
                   className={errors.time ? 'error' : ''}
+                  ref={timeInputRef}
                 />
-                <FaClock style={{
-                  position: 'absolute',
-                  right: '1rem',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  color: '#6b7280'
-                }} />
+                <button 
+                  type="button" 
+                  onClick={handleTimeIconClick}
+                  className="icon-button"
+                >
+                  <FaClock className="input-icon" />
+                </button>
               </div>
               {errors.time && <span className="error-message">{errors.time}</span>}
             </div>
@@ -216,7 +265,7 @@ const ScheduleMeeting = () => {
               {errors.location && <span className="error-message">{errors.location}</span>}
             </div>
 
-            <div className="form-group" style={{ gridColumn: 'span 2' }}>
+            <div className="form-group form-grid-full">
               <label htmlFor="participants">Participants</label>
               <div style={{ position: 'relative' }}>
                 <input
@@ -239,7 +288,7 @@ const ScheduleMeeting = () => {
               {errors.participants && <span className="error-message">{errors.participants}</span>}
             </div>
 
-            <div className="form-group" style={{ gridColumn: 'span 2' }}>
+            <div className="form-group form-grid-full">
               <label htmlFor="description">Description</label>
               <textarea
                 id="description"
@@ -252,24 +301,17 @@ const ScheduleMeeting = () => {
             </div>
           </div>
 
-          <div className="form-actions" style={{ 
-            display: 'flex', 
-            gap: '1rem', 
-            marginTop: '2rem',
-            justifyContent: 'flex-end'
-          }}>
+          <div className="form-actions">
             <button 
               type="button" 
-              className="auth-button" 
+              className="auth-button cancel-button" 
               onClick={() => navigate('/dashboard')}
-              style={{ backgroundColor: '#6b7280' }}
             >
               Cancel
             </button>
             <button 
               type="submit" 
-              className="auth-button" 
-              style={{ backgroundColor: '#10b981' }}
+              className="auth-button save-button" 
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Scheduling...' : <><FaSave /> Schedule Meeting</>}
@@ -281,4 +323,4 @@ const ScheduleMeeting = () => {
   );
 };
 
-export default ScheduleMeeting; 
+export default ScheduleMeeting;
