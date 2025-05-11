@@ -74,7 +74,10 @@ const Subscription = () => {
 
       <div className="plans-grid">
         {subscriptionPlans.map((plan) => (
-          <div key={plan.id} className="plan-card">
+          <div 
+            key={plan.id} 
+            className={`plan-card ${selectedPlan === plan.id ? 'selected-plan' : ''}`}
+          >
             <div className="plan-header">
               <h3>{plan.name}</h3>
               <div className="plan-price">{plan.price}</div>
@@ -88,7 +91,7 @@ const Subscription = () => {
               className="enroll-button"
               onClick={() => handleEnroll(plan.id)}
             >
-              Enroll Now
+              {selectedPlan === plan.id ? 'Selected' : 'Enroll Now'}
             </button>
           </div>
         ))}
@@ -106,4 +109,4 @@ const Subscription = () => {
   );
 };
 
-export default Subscription; 
+export default Subscription;

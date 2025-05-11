@@ -158,7 +158,27 @@ const Dashboard = () => {
           <div className="section-header">
             <FaTasks className="section-icon" />
             <h2>BNS Department Meetings</h2>
-            <div className="meeting-actions">
+          </div>
+          
+          <div className="meeting-controls">
+            <div className="search-filter-container">
+              <div className="search-container">
+                <input
+                  type="text"
+                  placeholder="Search meetings..."
+                  className="meeting-search"
+                  onChange={(e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const allMeetings = JSON.parse(localStorage.getItem('meetings') || '[]');
+                    const filtered = allMeetings.filter(m => 
+                      m.title.toLowerCase().includes(searchTerm) || 
+                      m.description.toLowerCase().includes(searchTerm)
+                    );
+                    setMeetings(filtered);
+                  }}
+                />
+              </div>
+              
               <select 
                 className="meeting-filter"
                 onChange={(e) => {
@@ -173,13 +193,14 @@ const Dashboard = () => {
                 <option value="committee">Committee Meetings</option>
                 <option value="other">Other</option>
               </select>
-              <button 
-                className="add-meeting-btn"
-                onClick={() => navigate('/schedule-meeting')}
-              >
-                <FaPlus /> Schedule New Meeting
-              </button>
             </div>
+            
+            <button 
+              className="add-meeting-btn"
+              onClick={() => navigate('/schedule-meeting')}
+            >
+              <FaPlus /> Schedule Meeting
+            </button>
           </div>
           <div className="meeting-list">
             {meetings.length > 0 ? (
@@ -288,4 +309,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard; 
+export default Dashboard;

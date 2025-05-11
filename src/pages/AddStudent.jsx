@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaUserPlus, FaSave, FaTimes, FaUser, FaPhone, FaSchool, FaIdCard } from 'react-icons/fa';
+import { FaUserPlus, FaSave, FaTimes, FaUser, FaPhone, FaSchool, FaIdCard, FaArrowLeft } from 'react-icons/fa';
 import './Auth.css';
 
 const AddStudent = () => {
@@ -198,7 +198,7 @@ const AddStudent = () => {
               {errors.phone && <span className="error-message">{errors.phone}</span>}
             </div>
 
-            <div className="form-group" style={{ gridColumn: 'span 2' }}>
+            <div className="form-group form-grid-full">
               <label htmlFor="address">Address</label>
               <textarea
                 id="address"
@@ -356,6 +356,9 @@ const AddStudent = () => {
 
   return (
     <div className="auth-container">
+      <button className="back-button" onClick={() => navigate(-1)}>
+        <FaArrowLeft />
+      </button>
       <div className="auth-box" style={{ maxWidth: '800px' }}>
         <div className="auth-header">
           <FaUserPlus className="auth-icon" style={{ fontSize: '2rem', color: '#3b82f6' }} />
@@ -364,57 +367,54 @@ const AddStudent = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
-          <div className="form-sections" style={{ 
-            display: 'flex', 
-            gap: '1rem', 
-            marginBottom: '2rem',
-            borderBottom: '1px solid #e5e7eb',
-            paddingBottom: '1rem'
-          }}>
+          <div className="form-sections">
             <button
               type="button"
               className={`section-button ${activeSection === 'personal' ? 'active' : ''}`}
               onClick={() => setActiveSection('personal')}
             >
-              <FaUser /> Personal
+              <FaUser aria-hidden="true" />
+              <span>Personal</span>
             </button>
             <button
               type="button"
               className={`section-button ${activeSection === 'contact' ? 'active' : ''}`}
               onClick={() => setActiveSection('contact')}
             >
-              <FaPhone /> Contact
+              <FaPhone aria-hidden="true" />
+              <span>Contact</span>
             </button>
             <button
               type="button"
               className={`section-button ${activeSection === 'parent' ? 'active' : ''}`}
               onClick={() => setActiveSection('parent')}
             >
-              <FaUser /> Parent
+              <FaUser aria-hidden="true" />
+              <span>Parent</span>
             </button>
             <button
               type="button"
               className={`section-button ${activeSection === 'academic' ? 'active' : ''}`}
               onClick={() => setActiveSection('academic')}
             >
-              <FaSchool /> Academic
+              <FaSchool aria-hidden="true" />
+              <span>Academic</span>
             </button>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+          <div className="form-grid">
             {renderSection(activeSection)}
           </div>
 
-          <div className="form-actions" style={{ 
-            display: 'flex', 
-            gap: '1rem', 
-            marginTop: '2rem',
-            justifyContent: 'flex-end'
-          }}>
-            <button type="button" className="auth-button" onClick={() => navigate('/dashboard')}>
+          <div className="form-actions">
+            <button 
+              type="button" 
+              className="auth-button cancel-button" 
+              onClick={() => navigate(-1)}
+            >
               <FaTimes /> Cancel
             </button>
-            <button type="submit" className="auth-button" style={{ backgroundColor: '#10b981' }}>
+            <button type="submit" className="auth-button save-button">
               <FaSave /> Save Student
             </button>
           </div>
@@ -424,4 +424,4 @@ const AddStudent = () => {
   );
 };
 
-export default AddStudent; 
+export default AddStudent;

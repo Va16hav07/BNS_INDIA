@@ -27,7 +27,7 @@ const LandingPage = () => {
         </div>
         <div className="hero-image">
           <img 
-            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+            src="https://media.istockphoto.com/id/1480277406/photo/graduation-group-and-back-view-of-students-celebrate-education-success-behind-of-excited.jpg?s=612x612&w=0&k=20&c=KRfzU9eeBsUdCNUXQSIx4yf6O2PlMD9XvckFgx-hndc=" 
             alt="Students learning in a modern classroom"
             className={loadedImages.hero ? 'loaded' : ''}
             onLoad={() => handleImageLoad('hero')}
@@ -181,4 +181,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage; 
+export default LandingPage;

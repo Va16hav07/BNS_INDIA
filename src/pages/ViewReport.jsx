@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { FaFileAlt, FaDownload, FaFilter, FaChartBar, FaChartLine, FaChartPie } from 'react-icons/fa';
+import { FaFileAlt, FaDownload, FaFilter, FaChartBar, FaChartLine, FaChartPie, FaArrowLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import './Auth.css';
 
 const ViewReport = () => {
+  const navigate = useNavigate();
   const [filters, setFilters] = useState({
     reportType: '',
     class: '',
@@ -57,22 +59,26 @@ const ViewReport = () => {
     // Implement download functionality
   };
 
+  const handleBack = () => {
+    navigate(-1); // Navigate back to the previous page
+  };
+
   return (
     <div className="auth-container">
-      <div className="auth-box" style={{ maxWidth: '1200px' }}>
+      <button className="back-button" onClick={handleBack}>
+        <FaArrowLeft />
+      </button>
+      
+      <div className="auth-box reports-box">
         <div className="auth-header">
-          <FaFileAlt className="auth-icon" style={{ fontSize: '2rem', color: '#3b82f6' }} />
+          <FaFileAlt className="auth-icon" />
           <h2>View Reports</h2>
           <p>Access and download various school reports</p>
         </div>
 
-        <div className="filters-container" style={{ marginBottom: '2rem' }}>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(4, 1fr)', 
-            gap: '1rem',
-            marginBottom: '1rem'
-          }}>
+        <div className="form-section filters-section">
+          <h3><FaFilter /> Filters</h3>
+          <div className="filter-grid">
             <div className="form-group">
               <label>Report Type</label>
               <select name="reportType" value={filters.reportType} onChange={handleFilterChange}>
@@ -117,74 +123,28 @@ const ViewReport = () => {
           </div>
         </div>
 
-        <div className="reports-grid" style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', 
-          gap: '1rem',
-          marginBottom: '2rem'
-        }}>
+        <div className="reports-grid">
           {reports.map(report => (
-            <div key={report.id} className="report-card" style={{
-              backgroundColor: 'white',
-              borderRadius: '0.5rem',
-              padding: '1.5rem',
-              boxShadow: 'var(--shadow-md)',
-              transition: 'var(--transition-base)',
-              cursor: 'pointer',
-              border: '1px solid var(--border-color)'
-            }}
-            onClick={() => handleViewReport(report)}>
-              <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '1rem',
-                marginBottom: '1rem'
-              }}>
-                <div style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '0.5rem',
-                  backgroundColor: '#e0e7ff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#3b82f6'
-                }}>
+            <div 
+              key={report.id} 
+              className="report-card"
+              onClick={() => handleViewReport(report)}
+            >
+              <div className="report-header">
+                <div className="report-icon">
                   <FaFileAlt />
                 </div>
-                <div>
-                  <h3 style={{ 
-                    margin: 0, 
-                    fontSize: '1.125rem',
-                    color: 'var(--text-light)'
-                  }}>
-                    {report.title}
-                  </h3>
-                  <p style={{ 
-                    margin: '0.25rem 0 0',
-                    fontSize: '0.875rem',
-                    color: '#6b7280'
-                  }}>
-                    {report.date}
-                  </p>
+                <div className="report-info">
+                  <h3>{report.title}</h3>
+                  <p>{report.date}</p>
                 </div>
               </div>
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                paddingTop: '1rem',
-                borderTop: '1px solid var(--border-color)'
-              }}>
-                <div style={{ fontSize: '0.875rem', color: '#6b7280' }}>
+              <div className="report-footer">
+                <div className="report-meta">
                   {report.format} • {report.size}
                 </div>
                 <button 
-                  className="auth-button"
-                  style={{ 
-                    padding: '0.5rem',
-                    backgroundColor: '#3b82f6'
-                  }}
+                  className="download-button"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleDownload(report);
@@ -198,87 +158,34 @@ const ViewReport = () => {
         </div>
 
         {selectedReport && (
-          <div className="report-preview" style={{
-            backgroundColor: 'white',
-            borderRadius: '0.5rem',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-md)',
-            border: '1px solid var(--border-color)'
-          }}>
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '1.5rem'
-            }}>
-              <h3 style={{ margin: 0 }}>{selectedReport.title}</h3>
+          <div className="report-preview">
+            <div className="preview-header">
+              <h3>{selectedReport.title}</h3>
               <button 
-                className="auth-button"
-                style={{ 
-                  padding: '0.5rem',
-                  backgroundColor: '#3b82f6'
-                }}
+                className="auth-button download-btn"
                 onClick={() => handleDownload(selectedReport)}
               >
                 <FaDownload /> Download
               </button>
             </div>
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(3, 1fr)', 
-              gap: '1rem',
-              marginBottom: '1.5rem'
-            }}>
-              <div className="stat-card" style={{
-                backgroundColor: '#f3f4f6',
-                padding: '1rem',
-                borderRadius: '0.5rem',
-                textAlign: 'center'
-              }}>
-                <FaChartBar style={{ 
-                  fontSize: '1.5rem',
-                  color: '#3b82f6',
-                  marginBottom: '0.5rem'
-                }} />
-                <div style={{ fontSize: '1.25rem', fontWeight: '600' }}>85%</div>
-                <div style={{ fontSize: '0.875rem', color: '#6b7280' }}>Attendance Rate</div>
+            <div className="stats-grid">
+              <div className="stat-card">
+                <FaChartBar className="stat-icon attendance" />
+                <div className="stat-value">85%</div>
+                <div className="stat-label">Attendance Rate</div>
               </div>
-              <div className="stat-card" style={{
-                backgroundColor: '#f3f4f6',
-                padding: '1rem',
-                borderRadius: '0.5rem',
-                textAlign: 'center'
-              }}>
-                <FaChartLine style={{ 
-                  fontSize: '1.5rem',
-                  color: '#10b981',
-                  marginBottom: '0.5rem'
-                }} />
-                <div style={{ fontSize: '1.25rem', fontWeight: '600' }}>92%</div>
-                <div style={{ fontSize: '0.875rem', color: '#6b7280' }}>Pass Rate</div>
+              <div className="stat-card">
+                <FaChartLine className="stat-icon performance" />
+                <div className="stat-value">92%</div>
+                <div className="stat-label">Pass Rate</div>
               </div>
-              <div className="stat-card" style={{
-                backgroundColor: '#f3f4f6',
-                padding: '1rem',
-                borderRadius: '0.5rem',
-                textAlign: 'center'
-              }}>
-                <FaChartPie style={{ 
-                  fontSize: '1.5rem',
-                  color: '#f59e0b',
-                  marginBottom: '0.5rem'
-                }} />
-                <div style={{ fontSize: '1.25rem', fontWeight: '600' }}>78%</div>
-                <div style={{ fontSize: '0.875rem', color: '#6b7280' }}>Fee Collection</div>
+              <div className="stat-card">
+                <FaChartPie className="stat-icon finance" />
+                <div className="stat-value">78%</div>
+                <div className="stat-label">Fee Collection</div>
               </div>
             </div>
-            <div style={{ 
-              backgroundColor: '#f3f4f6',
-              padding: '1rem',
-              borderRadius: '0.5rem',
-              fontSize: '0.875rem',
-              color: '#6b7280'
-            }}>
+            <div className="report-meta-info">
               Report generated on {selectedReport.date} • {selectedReport.format} format • {selectedReport.size}
             </div>
           </div>
@@ -288,4 +195,4 @@ const ViewReport = () => {
   );
 };
 
-export default ViewReport; 
+export default ViewReport;
